@@ -1,0 +1,14 @@
+{
+  "notes-list": [
+    {
+      "id": 0,
+      "title": "Learn React",
+      "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in neque nisi. Phasellus placerat erat arcu. Fusce sed vehicula sem, vel viverra sapien. Quisque dapibus blandit ipsum nec aliquet. Suspendisse eget volutpat felis. Sed interdum turpis ac nulla imperdiet mollis. Mauris non iaculis enim. Nullam pretium metus purus, nec sagittis sapien tincidunt eget. Sed leo diam, sodales vel enim eu, vestibulum volutpat magna."
+    },
+    {
+      "id": 1,
+      "title": "Learn React Query",
+      "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in neque nisi. Phasellus placerat erat arcu. Fusce sed vehicula sem, vel viverra sapien. Quisque dapibus blandit ipsum nec aliquet. Suspendisse eget volutpat felis. Sed interdum turpis ac nulla imperdiet mollis. Mauris non iaculis enim. Nullam pretium metus purus, nec sagittis sapien tincidunt eget. Sed leo diam, sodales vel enim eu, vestibulum volutpat magna."
+    }
+  ]
+}
