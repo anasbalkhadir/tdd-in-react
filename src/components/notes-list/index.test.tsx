@@ -1,5 +1,5 @@
 import {
-  render,
+  render as renderRTL,
   screen,
   waitForElementToBeRemoved,
   getByText,
@@ -8,10 +8,16 @@ import userEvent from "@testing-library/user-event";
 
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { NotesList } from "./index";
 
 const server = setupServer();
+
+const render = (ui: React.ReactNode) => {
+  return renderRTL(<BrowserRouter>{ui}</BrowserRouter>);
+};
 
 describe("Given NotesList", () => {
   beforeAll(() => {
@@ -78,7 +84,7 @@ describe("Given NotesList", () => {
       screen.getByText("Loading Data ....")
     );
 
-    const notes = screen.getAllByTestId("notes-list-item");
+    const notes = screen.getAllByTestId("note-list-item");
 
     const notesText = notes.map((note) => {
       return note.textContent;
@@ -192,5 +198,35 @@ describe("Given NotesList", () => {
     getByText(screen.getByTestId("note-list"), "Learn mobx");
 
     expect(screen.queryByTestId("modal")).toBeNull();
+  });
+
+  test(`Scenario: user should be able to redirect to note-detail
+     WHEN user click on note title THEN user should be able to see note details 
+  
+  `, async () => {
+    customSetupServer();
+
+    window.history.pushState({}, "", "/");
+
+    render(
+      <Routes>
+        <Route path="/" element={<NotesList />} />
+        <Route
+          path="/note-detail/:noteId"
+          element={<div data-testid="note-detail-component"> Hello World </div>}
+        />
+      </Routes>
+    );
+
+    // wait for Data to load
+    await waitForElementToBeRemoved(() =>
+      screen.getByText("Loading Data ....")
+    );
+
+    const notelist = screen.getAllByTestId("note-list-item");
+
+    userEvent.click(notelist[0]);
+
+    screen.getByTestId("note-detail-component");
   });
 });

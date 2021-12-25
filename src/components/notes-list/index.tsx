@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+import { Link } from "react-router-dom";
+
 import { Modal } from "../../shared/modal";
 
 type note = {
@@ -71,8 +73,13 @@ export const NotesList = () => {
           <ul data-testid="note-list">
             {notes.map((note) => {
               return (
-                <li key={note.id} data-testid="notes-list-item">
-                  {note.title}
+                <li key={note.id}>
+                  <Link
+                    data-testid="note-list-item"
+                    to={`/note-detail/${note.id}`}
+                  >
+                    {note.title}
+                  </Link>
                 </li>
               );
             })}
